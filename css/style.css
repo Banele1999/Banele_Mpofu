@@ -89,8 +89,11 @@ section {
     min-height: calc(100vh - 70px);
     border-radius: 30px;
     backdrop-filter: var(--backdrop-filter-blur);
+    display: none;
 }
-
+section.active{
+    display: block;
+}
 /* move iteams */
 .main {
     max-width: 1200px;
@@ -253,6 +256,8 @@ button {
     height: 100%;
     width: 100%;
     padding: 35px 15px;
+    overflow-y: auto;
+    visibility: hidden;
 }
 .header .nav-inner{
     min-height: calc(100vh - 70px);
@@ -276,6 +281,26 @@ button {
     color: var(--blue-dark);
     display: block;
     font-weight: 500;
+    padding: 8px 15px;
+    transition: color 0.3s ease;
+    position: relative;
+}
+.header .nav-inner ul li a:hover{
+    color: var(--main-color);
+}
+.header .nav-inner ul li a::before{
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    height: 50%;
+    width: 100%;
+    background-color: var(--white-alpha-25);
+    z-index: -1;
+    transition: width 0.5s ease;
+}
+.header .nav-inner ul li a:hover::before{
+    width: 100%;
 }
 /* ------------------------------------------------- */
 /* layout */
@@ -286,10 +311,11 @@ button {
 
 /* ----------------HOME SECTION-------------------- */
 .home-section {
-    display: flex;
     padding: 120px 0;
 }
-
+.home-section.active{
+    display: flex;
+}
 /* layout */
 .home-text,
 .home-img {
